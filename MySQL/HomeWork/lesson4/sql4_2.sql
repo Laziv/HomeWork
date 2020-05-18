@@ -1,0 +1,57 @@
+DROP DATABASE IF EXISTS cinema;
+CREATE DATABASE cinema;
+USE cinema;
+
+CREATE TABLE cinema_halls(
+	id TINYINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(60) NOT NULL UNIQUE
+);
+
+CREATE TABLE movie_sessions(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	date DATE NOT NULL,
+	time TIME NOT NULL,
+	cinema_hall_id TINYINT UNSIGNED NOT NULL,
+	movie_id INT NOT NULL
+);
+
+CREATE TABLE movies(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(120) NOT NULL,
+	description TEXT,
+    duration TIME NOT NULL
+);
+
+CREATE TABLE genres(
+	id TINYINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(120) NOT NULL UNIQUE
+);
+
+CREATE TABLE movie_genre(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	genre_id TINYINT UNSIGNED NOT NULL,
+	movie_id INT NOT NULL
+);
+
+CREATE TABLE places(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	row__number TINYINT UNSIGNED NOT NULL,
+	place_number TINYINT UNSIGNED NOT NULL,
+	cinema_hall_id TINYINT UNSIGNED NOT NULL
+);
+
+CREATE TABLE tickets(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    price DECIMAL(6, 2),
+	is_sold BOOL,
+	movie_sessions_id INT NOT NULL,
+	place_id INT NOT NULL
+);
+
+ALTER TABLE movie_sessions ADD FOREIGN KEY (cinema_hall_id) REFERENCES cinema_halls(id);
+ALTER TABLE movie_sessions ADD FOREIGN KEY (movie_id) REFERENCES movies(id);
+ALTER TABLE places ADD FOREIGN KEY (cinema_hall_id) REFERENCES cinema_halls(id);
+ALTER TABLE tickets ADD FOREIGN KEY (movie_sessions_id) REFERENCES movies(id);
+ALTER TABLE tickets ADD FOREIGN KEY (place_id) REFERENCES places(id);
+ALTER TABLE movie_genre ADD FOREIGN KEY (genre_id) REFERENCES genres(id);
+ALTER TABLE movie_genre ADD FOREIGN KEY (movie_id) REFERENCES movies(id);

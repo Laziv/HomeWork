@@ -1,0 +1,35 @@
+CREATE DATABASE library;
+USE library;
+
+CREATE TABLE books(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(120) NOT NULL,
+	description TEXT,
+	price DECIMAL(8,2) NOT NULL,
+	isbn VARCHAR(20) NOT NULL UNIQUE,
+    genre_id INT NOT NULL
+);
+
+CREATE TABLE book_genres(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(60) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE authors(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	first_name VARCHAR(45) NOT NULL,
+	last_name VARCHAR(45) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+	dob DATE NOT NULL
+);
+
+CREATE TABLE book_author(
+    book_id INT NOT NULL,
+    author_id INT  NOT NULL
+);
+
+ALTER TABLE books ADD FOREIGN KEY (genre_id) REFERENCES book_genres(id);
+ALTER TABLE book_author ADD FOREIGN KEY (book_id) REFERENCES books(id);
+ALTER TABLE book_author ADD FOREIGN KEY (author_id) REFERENCES authors(id);
