@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h3>Task 1</h3>
+
+<input type="button" onclick="fillLists()" value="Заповнити списки">
+<div id="lists">
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <br>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <br>
+    <ul>
+        <li></li>
+    </ul>
+</div>
+<div id="amount"></div>
+<br>
+
+<h3>Task 2</h3>
+<input type="button" onclick="removeText()" value="Видалити текст">
+<div id="text">Text</div>
+<br>
+
+<h3>Task 3</h3>
+<input type="button" id="hide" onclick="hideButton()" value="Скрити кнопку">
+<br>
+
+<h3>Task 4</h3>
+<h4 onclick="showMenu()">- Університет:</h4>
+<ul id="menu" hidden="false">
+    <li>---кафедра ІСМ</li>
+    <li>---кафедра ЕСМ</li>
+    <li>---кафедра політології</li>
+</ul>
+
+<h3>Task 5</h3>
+<input type="button" onclick="setRedColor()" value="Встановити червоний фон для зовнішніх
+ посилань">
+<br>
+<a name="list">список</a>
+<ul >
+    <li><a href="http://google.com">http://google.com</a></li>
+    <li><a href="/tutorial">/tutorial.html</a></li>
+    <li><a href="local/path">local/path</a></li>
+    <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+    <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+    <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+</ul>
+</body>
+</html>
